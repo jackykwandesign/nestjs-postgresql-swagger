@@ -1,6 +1,9 @@
 import { IsDefinedNotNull } from '../isDefinedNotNull';
 
 export const IsObjectEmpty = (obj: Object) => {
+  if(!obj || obj === null){
+    return true
+  }
   if (Object.keys(obj).length === 0) {
     return true;
   } else {

@@ -9,11 +9,11 @@ let guest:Partial<User> = {
 export const GetUser = createParamDecorator((data, ctx: ExecutionContext): User | Partial<User> => {
     const req = ctx.switchToHttp().getRequest();
 
-    // if(req.user !== undefined){
-    //     return req.user;
-    // }else{
-    //     return guest
-    // }
-    return guest
+    if(req.user !== undefined){
+        return req.user;
+    }else{
+        return guest
+    }
+    // return guest
     
 });

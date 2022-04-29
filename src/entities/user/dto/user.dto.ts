@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 import { ApiResponseProperty, ApiProperty} from '@nestjs/swagger';
 import { BaseDTO } from '../../base/dto/base.dto';
 import { User } from '../user.entity';
@@ -10,7 +10,7 @@ export class UserSafeDTO extends BaseDTO implements Readonly<UserSafeDTO> {
   id: string;
 
   @ApiProperty({ required: true })
-  @IsString()
+  @IsEmail()
   email: string;
 
   @ApiProperty({ required: true })

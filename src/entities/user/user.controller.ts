@@ -16,7 +16,7 @@ export class UserController {
 
   @Get()
   public async getAll(): Promise<UserSafeDTO[]> {
-    return await this.serv.getAll();
+    return await this.serv.usersGetAll();
   }
 
   @Post()
@@ -24,6 +24,6 @@ export class UserController {
     @GetUser() user: User,
     @Body() dto: UserSafeDTO,
   ): Promise<UserSafeDTO> {
-    return this.serv.create(dto, user);
+    return this.serv.userCreate(dto, user);
   }
 }

@@ -24,6 +24,6 @@ export function ExtractJWTFromCookieOrBearer(req:Request){
     // console.log("ExtractJWTFromCookieOrBearer")
     let token = null;
     token = ExtractJWTFromCookie(req) || ExtractJWTFromHttpHeader(req);
-    console.log("jwt token: ", token)
+    // console.log("jwt token: ", token)
     return token
 }

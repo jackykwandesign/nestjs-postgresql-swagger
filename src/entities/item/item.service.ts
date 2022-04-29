@@ -32,21 +32,21 @@ export class ItemService {
 
     public async itemsGetAllFTS(filter?: ItemFilterDTO): Promise<Item[]> {
         const finalQuery = this.repo.createQueryBuilder("item")
-        console.log("filter", filter)
+        // console.log("filter", filter)
         if (!IsObjectEmpty(filter)) {
             console.log("filter not empty", filter)
             if (filter.name) {
-                finalQuery.where(`to_tsvector('simple',item.name) @@ to_tsquery('simple',:name)`,
+                finalQuery.where(`to_tsvector('simple',item.name) @@ to_tsquery('simple', :name)`,
                 { name:`${filter.name}:*` })
             }
             if (filter.description) {
-                finalQuery.andWhere('to_tsvector(item.description) @@ to_tsquery(:description)',
-                { description:filter.description })
+                finalQuery.andWhere(`to_tsvector('simple',item.description) @@ to_tsquery('simple', :description)`,
+                { description:`${filter.description}:*`})
             }
         }
-        console.log("finalQuery", finalQuery.getQueryAndParameters())
+        // console.log("finalQuery", finalQuery.getQueryAndParameters())
         const result = await finalQuery.getManyAndCount()
-        console.log("result", result)
+        // console.log("result", result)
         return result[0]
     }
 
